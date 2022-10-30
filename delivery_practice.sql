@@ -1,3 +1,5 @@
+
+
 #1 Display the name and surname of customers who ordered 'SASHIMI SALAD'
 
 SELECT
