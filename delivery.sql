@@ -84,3 +84,96 @@ ORDER BY
 	MostProfit DESC
 LIMIT 1;
 
+#7 Display product which haven't beed bought.
+
+SELECT
+	menu_name
+FROM
+	products
+WHERE
+	product_id NOT IN (
+	SELECT
+		DISTINCT product_id
+	FROM
+		orders_products);
+	
+#8 Display the customers full name and the amount they spent on the order. Sort by the most expensive purchase.
+	
+SELECT
+	CONCAT(first_name, ' ', last_name) AS 'Customer Name',
+	orders_products.order_id AS 'OrderNo',
+	ROUND((quantity * price), 2) AS 'Spent'
+FROM
+	orders_products
+JOIN products ON
+	products.product_id = orders_products.product_id
+JOIN orders ON
+	orders.order_id = orders_products.order_id
+JOIN customers ON
+	customers.customer_id = orders.order_id
+GROUP BY
+	OrderNo
+ORDER BY
+	Spent DESC;
+
+#9 Display the delivery time of each order. Sort from longest order.
+
+SELECT  
+	orders.order_id AS 'orderID',
+	timediff(time(date_arrived), time(date_get)) AS 'DeliveryTime'
+FROM
+	orders
+JOIN delivery_list ON
+	delivery_list.order_id = orders.order_id
+ORDER BY
+	DeliveryTime DESC;
+
+#10 Display orders quantity from each district.
+
+SELECT
+	district,
+	count(order_id)
+FROM
+	customers
+JOIN orders ON
+	orders.customer_id = customers.customer_id
+GROUP BY
+	district;
+
+#11 Display full name of deliveryman who delivered the longest order.
+
+SELECT
+	CONCAT(first_name, ' ', last_name) AS 'Deliveryman Name',
+	delivery_type AS 'Delivery Type',
+	timediff(time(date_arrived), time(date_get)) AS Time
+FROM
+	courier_info
+JOIN delivery_list ON
+	courier_info.courier_id = delivery_list.courier_id
+JOIN orders ON
+	orders.order_id = delivery_list.order_id
+ORDER BY
+	time DESC
+LIMIT 1;
+
+#12 Display the months in which the average check is less than the average check for the year.
+
+SELECT
+	month_name
+FROM
+	year_statistics
+WHERE
+	average_check < (
+	SELECT
+		avg(average_check)
+	FROM
+		year_statistics);
+	
+#13 
+	
+SELECT
+	(ROUND((SELECT MAX(average_check) FROM year_statistics) - (SELECT min(average_check) FROM year_statistics), 2)) AS 'Difference'
+FROM
+	year_statistics
+LIMIT 1;
+
