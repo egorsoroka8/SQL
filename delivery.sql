@@ -33,6 +33,12 @@ JOIN delivery_list ON
 	delivery_list.order_id = orders.order_id
 WHERE
 	payment_method = 'NULL';
+	
+|Name    |Surname |
+|--------|--------|
+|Jennifer|Radriges|
+|Bella   |Lorenson|
+|Oscar   |Rild    |
 
 #3 Display the name and surname of customer who did last order.
 
