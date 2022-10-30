@@ -326,3 +326,22 @@ ORDER BY
 |West    |95.45 |
 |North   |73.8  |
 |East    |39.6  |
+
+#15 Display how many orders each deliveryman did.
+
+SELECT
+	CONCAT(first_name, ' ', last_name) AS CourierName,
+	COUNT(delivery_list.courier_id) AS 'Orders QTY'
+FROM
+	courier_info
+JOIN delivery_list ON
+	delivery_list.courier_id = courier_info.courier_id
+GROUP BY
+	CourierName;
+	
+|CourierName    |Orders QTY|
+|---------------|----------|
+|John Rython    |3         |
+|Kate Looran    |4         |
+|Bob Kolaris    |4         |
+|Michael Frontal|4         |
