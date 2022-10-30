@@ -1,8 +1,8 @@
 #1 Display the name and surname of customers who ordered 'SASHIMI SALAD'
 
 SELECT
-	first_name,
-	last_name
+	first_name AS Name,
+	last_name AS Surname
 FROM
 	customers
 JOIN orders ON
@@ -14,10 +14,11 @@ JOIN products ON
 WHERE
 	menu_name = 'sashimi salad';
 	
-|first_name|last_name|
-|----------|---------|
-|James     |Twist    |
-|Ada       |Watson   |
+|Name |Surname|
+|-----|-------|
+|James|Twist  |
+|Ada  |Watson |
+
 
 #2 Display the name and surname of customers from who did not pay for the order
 
