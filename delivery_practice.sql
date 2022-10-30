@@ -134,7 +134,7 @@ LIMIT 1;
 #7 Display product which haven't beed bought.
 
 SELECT
-	menu_name
+	menu_name AS 'Meal'
 FROM
 	products
 WHERE
@@ -144,7 +144,7 @@ WHERE
 	FROM
 		orders_products);
 		
-|menu_name|
+|Meal     |
 |---------|
 |COFFEE   |	
 
