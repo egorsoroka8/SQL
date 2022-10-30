@@ -23,8 +23,8 @@ WHERE
 #2 Display the name and surname of customers from who did not pay for the order
 
 SELECT
-	first_name AS name,
-	last_name AS surname
+	first_name AS Name,
+	last_name AS Surname
 FROM
 	customers
 JOIN orders ON
@@ -43,8 +43,8 @@ WHERE
 #3 Display the name and surname of customer who did last order.
 
 SELECT
-	first_name AS name,
-	last_name AS surname
+	first_name AS Name,
+	last_name AS Surname
 FROM
 	customers
 JOIN orders ON
@@ -57,6 +57,10 @@ WHERE
 		max(date_arrived)
 	FROM
 		delivery_list);
+		
+|Name   |Surname  |
+|-------|---------|
+|William|Frankston|
 	
 #4 Display full customer name and full address from customers. Group by full Address.
 	
@@ -67,11 +71,29 @@ FROM
 	customers
 ORDER BY
 	Address ASC;
+	
+|Customer Name    |Address                 |
+|-----------------|------------------------|
+|Mario Gordon     |East Five Avenue 21 91  |
+|Oliver Thompson  |East Five Avenue 77 14  |
+|Peter Hall       |North Cascade Rd 17 7   |
+|William Frankston|North Cascade Rd 18 88  |
+|Bella Lorenson   |North Green Avenue 23 67|
+|Henry Smith      |South Brown St 15 56    |
+|James Twist      |South Corn St 24 89     |
+|Ada Watson       |South Elma St 18 9      |
+|Penny Smith      |South First Avenue 1 10 |
+|Hellen Bellora   |South First Avenue 11 85|
+|Oscar Rild       |South First Avenue 5 13 |
+|Erica Visputchu  |South First Avenue 62 44|
+|Jennifer Radriges|West Roll St 76 44      |
+|Kate Evans       |West Spring St 123 52   |
+|Randy Brown      |West Spring St 2 35     |
 
-#5 Display the most expensive meal.
+#5 Display the best selling meal.
 
 SELECT
-	menu_name AS 'Most Expensive Meal'
+	menu_name AS 'Best selling'
 FROM
 	products
 JOIN orders_products ON
@@ -82,19 +104,27 @@ WHERE
 		max(quantity)
 	FROM
 		orders_products);
+		
+|Best selling       |
+|-------------------|
+|NUTTY GRILLED SALAD|
 	
 #6 Display meal name and profit with the most profit.
 	
 SELECT
 	menu_name AS Meal,
-	(quantity * price) AS MostProfit
+	(quantity * price) AS Profit
 FROM
 	orders_products
 JOIN products ON
 	products.product_id = orders_products.product_id
 ORDER BY
-	MostProfit DESC
+	Profit DESC
 LIMIT 1;
+
+|Meal               |Profit|
+|-------------------|------|
+|NUTTY GRILLED SALAD|42    |
 
 #7 Display product which haven't beed bought.
 
@@ -108,6 +138,8 @@ WHERE
 		DISTINCT product_id
 	FROM
 		orders_products);
+		
+
 	
 #8 Display the customers full name and the amount they spent on the order. Sort by the most expensive purchase.
 	
