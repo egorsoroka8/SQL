@@ -40,6 +40,7 @@ WHERE
 |Bella   |Lorenson|
 |Oscar   |Rild    |
 
+
 #3 Display the name and surname of customer who did last order.
 
 SELECT
@@ -61,6 +62,7 @@ WHERE
 |Name   |Surname  |
 |-------|---------|
 |William|Frankston|
+	
 	
 #4 Display full customer name and full address from customers. Group by full Address.
 	
@@ -90,6 +92,7 @@ ORDER BY
 |Kate Evans       |West Spring St 123 52   |
 |Randy Brown      |West Spring St 2 35     |
 
+
 #5 Display the best selling meal.
 
 SELECT
@@ -108,6 +111,7 @@ WHERE
 |Best selling       |
 |-------------------|
 |NUTTY GRILLED SALAD|
+
 	
 #6 Display meal name and profit with the most profit.
 	
@@ -126,6 +130,7 @@ LIMIT 1;
 |-------------------|------|
 |NUTTY GRILLED SALAD|42    |
 
+
 #7 Display product which haven't beed bought.
 
 SELECT
@@ -139,6 +144,9 @@ WHERE
 	FROM
 		orders_products);
 		
+|menu_name|
+|---------|
+|COFFEE   |	
 
 	
 #8 Display the customers full name and the amount they spent on the order. Sort by the most expensive purchase.
@@ -159,6 +167,24 @@ GROUP BY
 	OrderNo
 ORDER BY
 	Spent DESC;
+	
+|Customer Name    |OrderNo|Spent|
+|-----------------|-------|-----|
+|Oscar Rild       |12     |31   |
+|William Frankston|13     |28.2 |
+|Penny Smith      |1      |25.2 |
+|Mario Gordon     |8      |25.2 |
+|Erica Visputchu  |10     |25.2 |
+|James Twist      |4      |24   |
+|Ada Watson       |15     |24   |
+|Hellen Bellora   |5      |15.7 |
+|Bella Lorenson   |9      |15.7 |
+|Peter Hall       |14     |15.5 |
+|Oliver Thompson  |3      |14.4 |
+|Randy Brown      |2      |14.1 |
+|Jennifer Radriges|7      |12.6 |
+|Kate Evans       |6      |11.25|
+
 
 #9 Display the delivery time of each order. Sort from longest order.
 
@@ -171,24 +197,52 @@ JOIN delivery_list ON
 	delivery_list.order_id = orders.order_id
 ORDER BY
 	DeliveryTime DESC;
+	
+|orderID|DeliveryTime|
+|-------|------------|
+|13     |06:47:08    |
+|11     |06:40:38    |
+|15     |06:35:33    |
+|9      |06:28:32    |
+|14     |06:26:21    |
+|7      |06:20:15    |
+|10     |06:06:55    |
+|8      |06:05:11    |
+|5      |05:50:00    |
+|6      |05:48:48    |
+|3      |05:34:40    |
+|4      |05:33:15    |
+|2      |05:31:09    |
+|1      |05:29:19    |
+|12     |NULL        |
+
+
 
 #10 Display orders quantity from each district.
 
 SELECT
-	district,
-	count(order_id)
+	district AS 'District',
+	count(order_id) AS 'Orders QTY'
 FROM
 	customers
 JOIN orders ON
 	orders.customer_id = customers.customer_id
 GROUP BY
 	district;
+	
+|District|Orders QTY|
+|--------|----------|
+|South   |7         |
+|West    |3         |
+|East    |2         |
+|North   |3         |
+
 
 #11 Display full name of deliveryman who delivered the longest order.
 
 SELECT
-	CONCAT(first_name, ' ', last_name) AS 'Deliveryman Name',
-	delivery_type AS 'Delivery Type',
+	CONCAT(first_name, ' ', last_name) AS 'Name',
+	delivery_type AS 'Delivery Method',
 	timediff(time(date_arrived), time(date_get)) AS Time
 FROM
 	courier_info
@@ -200,10 +254,15 @@ ORDER BY
 	time DESC
 LIMIT 1;
 
+|Name       |Delivery Method|Time    |
+|-----------|---------------|--------|
+|Kate Looran|car            |06:47:08|
+
+
 #12 Display the months in which the average check is less than the average check for the year.
 
 SELECT
-	month_name
+	month_name AS 'Month'
 FROM
 	year_statistics
 WHERE
@@ -212,12 +271,34 @@ WHERE
 		avg(average_check)
 	FROM
 		year_statistics);
+		
+|Month   |
+|--------|
+|February|
+|June    |
+|July    |
+|August  |
+
 	
-#13 
+#13 Display the difference between the most profitable and the least profitable months.
 	
 SELECT
-	(ROUND((SELECT MAX(average_check) FROM year_statistics) - (SELECT min(average_check) FROM year_statistics), 2)) AS 'Difference'
+	(ROUND((
+SELECT
+	MAX(average_check)
+FROM
+	year_statistics) - (
+SELECT
+	min(average_check)
+FROM
+	year_statistics),
+2)) AS 'Difference'
 FROM
 	year_statistics
 LIMIT 1;
+
+|Difference|
+|----------|
+|7.7       |
+
 
