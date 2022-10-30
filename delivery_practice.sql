@@ -302,3 +302,27 @@ LIMIT 1;
 |7.7       |
 
 
+#14 Display the total income from each district.
+
+SELECT
+	district AS 'District',
+	SUM(ROUND((quantity * price), 2)) AS 'Total'
+FROM
+	products
+JOIN orders_products ON
+	orders_products.product_id = products.product_id
+JOIN orders ON
+	orders.order_id = orders_products.order_id
+JOIN customers ON
+	customers.customer_id = orders.customer_id
+GROUP BY
+	district
+ORDER BY
+	Total DESC;
+	
+|District|Total |
+|--------|------|
+|South   |197.05|
+|West    |95.45 |
+|North   |73.8  |
+|East    |39.6  |
