@@ -251,3 +251,32 @@ ORDER BY
 |466,852|Akemi Warwick     |52,046    |
 |484,934|Magy Aamodt       |51,762    |
 
+
+#12 Display the department in which Fumino Frijda (M) works and his last title.
+
+SELECT
+	dept_name AS 'Department',
+	title AS 'Title',
+	CONCAT(first_name, ' ', last_name) AS 'Full Name',
+	titles.from_date AS 'Date'
+FROM
+	departments
+JOIN dept_emp ON
+	dept_emp.dept_no = departments.dept_no
+JOIN employees ON
+	employees.emp_no = dept_emp.emp_no
+JOIN titles ON
+	titles.emp_no = employees.emp_no
+WHERE
+	first_name = 'Fumino'
+	AND last_name = 'Frijda'
+	AND gender = 'M'
+ORDER BY
+	date DESC
+LIMIT 1;
+
+|Department|Title       |Full Name    |Date      |
+|----------|------------|-------------|----------|
+|Marketing |Senior Staff|Fumino Frijda|1996-12-17|
+
+
