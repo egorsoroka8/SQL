@@ -222,4 +222,32 @@ ORDER BY
 |14        |
 
 
+#11 Display 10 employees whose difference between highest and lowest salary the most.
+
+SELECT
+	salaries.emp_no AS ID,
+	CONCAT(first_name, ' ', last_name) AS 'Full Name',
+	(max(salary) - min(salary)) AS 'Difference'
+FROM
+	salaries 
+JOIN employees ON
+	employees.emp_no = salaries.emp_no
+GROUP BY
+	ID
+ORDER BY
+	Difference DESC LIMIT 10;
+
+	
+|ID     |Full Name         |Difference|
+|-------|------------------|----------|
+|43,145 |Fumino Frijda     |53,875    |
+|204,805|Nimmagadda Crouzet|53,425    |
+|446,888|Ishfaq Iisaku     |53,261    |
+|13,386 |Khosrow Sgarro    |53,014    |
+|102,654|Gregory Makinen   |52,827    |
+|74,848 |Lucian Werthner   |52,721    |
+|65,362 |Zsolt McAffer     |52,515    |
+|433,372|Rasiah Yemenis    |52,324    |
+|466,852|Akemi Warwick     |52,046    |
+|484,934|Magy Aamodt       |51,762    |
 
