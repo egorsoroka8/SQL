@@ -11,6 +11,14 @@ SELECT, JOIN, AS, ORDER BY (ASC, DESC), GROUP BY, LIMIT, DISTINCT, CONCAT, TIME,
 <img src="https://github.com/egorsoroka8/content/blob/main/delivery.png" alt="Image">
 
 
+
+
+## Employees database
+### Queries
+### Entity Relationship Diagram
+<img src="https://github.com/egorsoroka8/content/blob/main/employees.png" alt="Image">
+
+
 #
 ### Databases were downloaded from :
 [delivery](https://github.com/yurma29/delivery_database)
