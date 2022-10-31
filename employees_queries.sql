@@ -1,6 +1,18 @@
 
 
-#1 Display the oldest employee.
+#1 Dispalay employee quantity.
+
+SELECT
+	DISTINCT count(emp_no) AS 'Employee QTY'
+FROM
+	employees;
+	
+|Employee QTY|
+|------------|
+|300,024     |
+
+
+#2 Display the oldest employee.
 
 SELECT
 	CONCAT(first_name, ' ', last_name) AS Employee, birth_date AS 'Birth date'
@@ -24,7 +36,7 @@ WHERE
 |Supot Remmele    |1952-02-01|
 
 	
-#2 Display employee with the highest salary
+#3 Display employee with the highest salary
 
 SELECT
 	CONCAT(first_name, ' ', last_name) AS Employee,
@@ -48,7 +60,7 @@ LIMIT 1;
 |Tokuyasu Pesch|Senior Staff|
 
 
-#3 Display avarage salary for each title.
+#4 Display avarage salary for each title.
 
 SELECT
 	title AS Title,
@@ -73,7 +85,7 @@ ORDER BY
 |Senior Staff      |70,470.8353  |
 
 
-#4 Display employee quantity from each department.
+#5 Display employee quantity from each department.
 
 SELECT
 	departments.dept_name AS DeptName,
@@ -106,7 +118,7 @@ ORDER BY
 |Finance           |17,346|
 
 
-#5 Display employee quantity by gender.
+#6 Display employee quantity by gender.
 
 SELECT
 	gender AS Gender,
@@ -122,7 +134,7 @@ GROUP BY
 |F     |120,051|
 
 
-#6 Display avarage salary from each department.
+#7 Display avarage salary from each department.
 
 SELECT
 	dept_name AS Name,
@@ -150,7 +162,7 @@ ORDER BY AVGSalary DESC;
 |Customer Service  |54,959.6724|
 
 
-#7 Display the maximum difference in years between employees.
+#8 Display the maximum difference in years between employees.
 
 SELECT
 	(max(YEAR(birth_date)) - min(YEAR(birth_date))) AS 'Age Difference'
@@ -162,7 +174,7 @@ FROM
 |13            |
 
 
-#8 Display employees name, surname, gender which name and surname start with 'a' and finish with 'a'.
+#9 Display employees name, surname, gender which name and surname start with 'a' and finish with 'a'.
 
 SELECT
 	DISTINCT 
@@ -189,7 +201,7 @@ ORDER BY Gender;
 |Ayonca  |Andreotta|F     |
 
 
-#9 Display avarage salary from each gender.
+#10 Display avarage salary from each gender.
 
 SELECT
 	gender AS Gender,
@@ -207,7 +219,7 @@ GROUP BY
 |F     |63,769.6032|
 
 
-#10 Display the number of characters of the longest name.
+#11 Display the number of characters of the longest name.
 
 SELECT
 	LENGTH(first_name) AS 'NameLength'
@@ -222,7 +234,7 @@ ORDER BY
 |14        |
 
 
-#11 Display 10 employees whose difference between highest and lowest salary the most.
+#12 Display 10 employees whose difference between highest and lowest salary the most.
 
 SELECT
 	salaries.emp_no AS ID,
@@ -252,7 +264,7 @@ ORDER BY
 |484,934|Magy Aamodt       |51,762    |
 
 
-#12 Display the department in which Fumino Frijda (M) works and his last title.
+#13 Display the department in which Fumino Frijda (M) works and his last title.
 
 SELECT
 	dept_name AS 'Department',
