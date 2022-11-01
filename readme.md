@@ -2,7 +2,7 @@
 
 ### Сommands used during practice :
 ```
-SELECT, JOIN, AS, ORDER BY (ASC, DESC), GROUP BY, LIMIT, DISTINCT, CONCAT, TIME, TIMEDIFF, COUNT, ROUND
+SELECT, JOIN, AS, ORDER BY (ASC, DESC), GROUP BY, LIMIT, DISTINCT, CONCAT, TIME, TIMEDIFF, COUNT, ROUND, MAX, MIN, AVG
 ```
 
 ## Delivery database :
@@ -18,6 +18,12 @@ SELECT, JOIN, AS, ORDER BY (ASC, DESC), GROUP BY, LIMIT, DISTINCT, CONCAT, TIME,
 ### Entity Relationship Diagram
 <img src="https://github.com/egorsoroka8/content/blob/main/employees.png" alt="Image">
 
+
+
+## World database
+### Queries [link](https://github.com/egorsoroka8/SQL/blob/main/world_queries.sql)
+### Entity Relationship Diagram
+<img src="https://github.com/egorsoroka8/content/blob/main/wold.png" alt="Image">
 
 #
 ### Databases were downloaded from :
