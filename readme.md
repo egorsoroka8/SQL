@@ -16,7 +16,7 @@ SELECT, JOIN, AS, ORDER BY (ASC, DESC), GROUP BY, LIMIT, DISTINCT, CONCAT, TIME,
 ## Employees database
 ### Queries [link](https://github.com/egorsoroka8/SQL/blob/main/employees_queries.sql)
 ### Entity Relationship Diagram
-<img src="![image](https://user-images.githubusercontent.com/112896404/204781262-69b5460d-d03c-4c0b-aefd-e367082a5a10.png" alt="Image">
+<img src="https://user-images.githubusercontent.com/112896404/204781262-69b5460d-d03c-4c0b-aefd-e367082a5a10.png" alt="Image">
 
 
 
